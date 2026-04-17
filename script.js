@@ -8,7 +8,11 @@ const ValidationForm = {
 }
 
 const DashboardContainer = {
-     dashboardContainer: document.getElementById("mainDashboard")
+     dashboardContainer: document.getElementById("mainDashboard"),
+     commName: document.getElementById("name"),
+     liveClock: document.getElementById("liveClock"),
+     currentTime: document.getElementById("currentTime"),
+     buttons: document.querySelectorAll("btnContainer")
 }
 
 //functions
@@ -36,6 +40,9 @@ function logInStatus(){
           }, 1000)
 }
 
+
+
+
 ValidationForm.form.addEventListener("submit", (e)=>{
      e.preventDefault()
      const {missionName, commanderName} = getInputs();   
@@ -46,3 +53,10 @@ ValidationForm.form.addEventListener("submit", (e)=>{
           dashboard();
      }
 })
+
+
+setInterval(()=>{
+     let cTime = new Date();
+     let timeOptions = { hour12: true };
+     DashboardContainer.currentTime.innerHTML = cTime.toLocaleTimeString('en-US', timeOptions);
+},1000)
