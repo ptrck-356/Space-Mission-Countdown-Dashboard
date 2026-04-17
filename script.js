@@ -77,7 +77,20 @@ function startCountdown() {
      }, 1000);
 }
 
+function abortCountdown() {
+     clearInterval(countdownInterval); // Stops the timer
+     DashboardContainer.countdownDisplay.innerHTML = "MISSION ABORTED";
+     DashboardContainer.countdownDisplay.style.color = "red";
+}
 
+function resetCountdown() {
+     clearInterval(countdownInterval); 
+     timeRemaining = 1 * 60;
+     
+     // Resets the display text and color
+     DashboardContainer.countdownDisplay.innerHTML = "00:01:00"; 
+     DashboardContainer.countdownDisplay.style.color = "black"; 
+}
 
 
 ValidationForm.form.addEventListener("submit", (e)=>{
@@ -91,6 +104,6 @@ ValidationForm.form.addEventListener("submit", (e)=>{
      }
 })
 
-DashboardContainer.buttons[0].addEventListener('click', ()=>{
-     startCountdown();
-})
+DashboardContainer.buttons[0].addEventListener('click', startCountdown);
+DashboardContainer.buttons[1].addEventListener('click', abortCountdown);
+DashboardContainer.buttons[2].addEventListener('click', resetCountdown);
