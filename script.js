@@ -12,8 +12,17 @@ const DashboardContainer = {
      commName: document.getElementById("name"),
      liveClock: document.getElementById("liveClock"),
      currentTime: document.getElementById("currentTime"),
-     buttons: document.querySelectorAll("btnContainer")
+     buttons: document.querySelectorAll(".btnContainer button"),
+     countdownDisplay: document.getElementById("countdownDisplay")
 }
+
+
+setInterval(()=>{
+     let cTime = new Date();
+     let timeOptions = { hour12: true };
+     DashboardContainer.currentTime.innerHTML = cTime.toLocaleTimeString('en-US', timeOptions);
+},1000)
+
 
 //functions
 function dashboard(){
@@ -40,6 +49,34 @@ function logInStatus(){
           }, 1000)
 }
 
+let countdownInterval; 
+let timeRemaining = 1*60; 
+
+function startCountdown() {
+     clearInterval(countdownInterval); 
+     countdownInterval = setInterval(() => {
+          timeRemaining--; 
+          
+
+          let hours = Math.floor(timeRemaining / 3600);
+          let minutes = Math.floor((timeRemaining % 3600) / 60);
+          let seconds = timeRemaining % 60;
+
+          let formattedHours = String(hours).padStart(2, '0');
+          let formattedMinutes = String(minutes).padStart(2, '0');
+          let formattedSeconds = String(seconds).padStart(2, '0');
+
+     
+          DashboardContainer.countdownDisplay.innerHTML = `${formattedHours}:${formattedMinutes}:${formattedSeconds}`;
+
+          if (timeRemaining <= 0) {
+               clearInterval(countdownInterval); 
+               DashboardContainer.countdownDisplay.innerHTML = "LIFTOFF!";
+               DashboardContainer.countdownDisplay.style.color = "green";
+          }
+     }, 1000);
+}
+
 
 
 
@@ -54,9 +91,6 @@ ValidationForm.form.addEventListener("submit", (e)=>{
      }
 })
 
-
-setInterval(()=>{
-     let cTime = new Date();
-     let timeOptions = { hour12: true };
-     DashboardContainer.currentTime.innerHTML = cTime.toLocaleTimeString('en-US', timeOptions);
-},1000)
+DashboardContainer.buttons[0].addEventListener('click', ()=>{
+     startCountdown();
+})
