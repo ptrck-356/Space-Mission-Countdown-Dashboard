@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+     <meta charset="UTF-8">
+     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+     <title>Space Mission Countdown Dashboard</title>
+     <link rel="stylesheet" href="style.css">
+     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css">
+</head>
+<body>
+<main>
+<!--Log-In or Validiation form-->
+<section id="validForm" class="validForm">
+     <form id="form">
+          <div class="inputCont">
+               <label for="missionName">Mission Name</label>
+               <input type="text" name="missionName" id="missionName" placeholder="Enter Mission Name">
+          </div>
+          <div class="inputCont">
+               <label for="commanderName">Commander Name</label>
+               <input type="text" name="commanderName" id="commanderName" placeholder="Enter Commander Name">
+          </div>
+
+          <span id="status"></span>
+          <button>Submit</button>
+     </form>
+</section>
+
+
+
+<!--Main Dashboard-->
+<section id="mainDashboard" class="mainDashboard">
+<h1>Welcome, Commander <span id="name" style="all: unset; color: rgb(0, 88, 219);">Patrick</span>!</h1>
+
+<div class="btnContainer">
+     <button>Start Sequence</button>
+     <button>Abort</button>
+     <button>Reset</button>
+</div>
+</section>
+
+</main>
+<script src="script.js"></script>
+</body>
+</html>

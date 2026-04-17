@@ -1,0 +1,18 @@
+Part 1: Registration Form & Validation
+A pre-launch login form requiring a Mission Name 
+and a Commander Name.
+Neither field can be empty. If validation 
+fails, show a red error message. If it passes, 
+hide the form and show the Launch Dashboard.
+
+Part 2: The Main Dashboard & DOM Manipulation
+Once in the dashboard, inject the Commander's name (e.g., "Welcome, Commander [Name]").
+Include an "Engage Red Alert" button that toggles a CSS class to change the page's color scheme to red/dark mode.
+
+Part 3: Asynchronous JS 
+Use setInterval to display the current real-time clock.  
+Display a countdown starting at exactly 01:00:00 (1 Minute, 0 Seconds, 0 Milliseconds).
+Buttons needed: Start Sequence, Abort (Pause), and Reset.
+     Start: Uses setInterval (running every 10ms) to count down. If the timer hits exactly 0, it must stop automatically and change the text to "LAUNCH!"
+     Abort: Clears the interval to pause the countdown.
+     Reset: Stops the interval and resets the display back to 01:00:00.
