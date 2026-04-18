@@ -197,7 +197,7 @@ h1{
      white-space: nowrap;
      color: var(--toggle-text);
      position: fixed;
-     bottom: 20px;
+     bottom: 64px;
      right: 20px;
      cursor: pointer;
      font-weight: 600;
@@ -273,7 +273,7 @@ i{
      }
 
      .themeToggle {
-          bottom: 12px;
+          bottom:64px;
           right: 12px;
           min-width: 36px;
           min-height: 36px;
