@@ -21,7 +21,7 @@ A web-based interactive dashboard that simulates a space mission launch sequence
   - **Launch Controls:**
     - **Start Sequence:** Begins the countdown from the current time remaining.
     - **Abort:** Stops the countdown and displays a `MISSION ABORTED` warning in red.
-    - **Reset:** Stops the countdown and resets the display back to `02:00:00`.
+    - **Reset:** Stops the countdown and resets the display back to `01:00:00`.
   - On reaching zero, the timer automatically stops and displays `LIFTOFF!` in green.
 - **Red Alert Mode:** A fixed floating button (`Engage Red Alert / Cancel Alert`) toggles a body-level CSS class that switches the entire color scheme to a deep red palette, simulating a mission emergency.
 
