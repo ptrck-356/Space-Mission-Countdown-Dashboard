@@ -112,7 +112,6 @@ function resetCountdown() {
      DashboardContainer.countdownDisplay.style.color = "var(--toggle-text)"; 
 }
 
-
 ValidationForm.form.addEventListener("submit", (e)=>{
      e.preventDefault()
      const {missionName, commanderName} = getInputs();   
@@ -126,11 +125,18 @@ ValidationForm.form.addEventListener("submit", (e)=>{
      DashboardContainer.commName.innerHTML = commanderName
 })
 
+if (html.dataset.theme === "light"){
+     themeToggle_btn.innerHTML = '<i class="fa-solid fa-moon">'
+}
+
 themeToggle_btn.addEventListener('click', ()=>{
      html.dataset.theme = html.dataset.theme === "dark" ? "light" : "dark";
+     if (html.dataset.theme === "light"){
+          themeToggle_btn.innerHTML = '<i class="fa-solid fa-moon">'
+     } else {
+          themeToggle_btn.innerHTML = '<i class="fa-solid fa-sun">'
+     }
 })
-
-
 
 DashboardContainer.buttons[0].addEventListener('click', startCountdown);
 DashboardContainer.buttons[1].addEventListener('click', abortCountdown);
