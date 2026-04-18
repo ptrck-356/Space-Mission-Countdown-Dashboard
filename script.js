@@ -1,4 +1,6 @@
-//Get the Element ID's
+const themeToggle_btn = document.getElementById("themeToggle");
+const html = document.documentElement;
+
 const ValidationForm = {
      validForm: document.getElementById("validForm"),
      form:document.getElementById("form"),
@@ -107,7 +109,7 @@ function resetCountdown() {
      timeRemaining = 2 * 60 * 1000;
      
      DashboardContainer.countdownDisplay.innerHTML = formatTime(timeRemaining); 
-     DashboardContainer.countdownDisplay.style.color = "black"; 
+     DashboardContainer.countdownDisplay.style.color = "var(--toggle-text)"; 
 }
 
 
@@ -123,6 +125,11 @@ ValidationForm.form.addEventListener("submit", (e)=>{
 
      DashboardContainer.commName.innerHTML = commanderName
 })
+
+themeToggle_btn.addEventListener('click', ()=>{
+     html.dataset.theme = html.dataset.theme === "dark" ? "light" : "dark";
+})
+
 
 
 DashboardContainer.buttons[0].addEventListener('click', startCountdown);

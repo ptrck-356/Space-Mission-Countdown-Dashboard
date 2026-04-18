@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-theme="light">
 <head>
      <meta charset="UTF-8">
      <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -32,7 +32,6 @@
 <section id="mainDashboard" class="mainDashboard">
 <div class="head">
      <h1>Welcome, Commander <span id="name" style="all: unset; color: rgb(0, 88, 219);"></span>!</h1>
-     <button class="themeToggle"><i class="fa-solid fa-sun"></i></button>
 </div>
 <div id="liveClock" class="liveClock">
      <span id="currentTime" class="currentTime"></span>
@@ -47,8 +46,9 @@
      <button><i class="fa-solid fa-arrow-rotate-left"></i>Reset</button>
 </div>
 </section>
-
 </main>
+
+<button id="themeToggle" class="themeToggle" ><i class="fa-solid fa-sun"></i></button>
 <script src="script.js"></script>
 </body>
 </html>
