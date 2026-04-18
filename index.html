@@ -30,13 +30,16 @@
 
 <!--Main Dashboard-->
 <section id="mainDashboard" class="mainDashboard">
-<h1>Welcome, Commander <span id="name" style="all: unset; color: rgb(0, 88, 219);">Patrick</span>!</h1>
+<div class="head">
+     <h1>Welcome, Commander <span id="name" style="all: unset; color: rgb(0, 88, 219);">Patrick</span>!</h1>
+     <button class="themeToggle"><i class="fa-solid fa-sun"></i></button>
+</div>
 <div id="liveClock" class="liveClock">
      <span id="currentTime" class="currentTime"></span>
 </div>
 
 <div id="countdown" class="countdown">
-     <span id="countdownDisplay" class="countdownTime"></span>
+     <span id="countdownDisplay" class="countdownTime">00:00:00</span>
 </div>
 <div class="btnContainer">
      <button><i class="fas fa-hourglass-start"></i> Start Sequence</button>

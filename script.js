@@ -85,7 +85,7 @@ function abortCountdown() {
 
 function resetCountdown() {
      clearInterval(countdownInterval); 
-     timeRemaining = 1 * 60;
+     timeRemaining = 2 * 60;
      
      // Resets the display text and color
      DashboardContainer.countdownDisplay.innerHTML = "00:01:00"; 
