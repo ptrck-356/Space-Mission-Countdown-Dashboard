@@ -1,3 +1,5 @@
+document.getElementById("footerYear").textContent = new Date().getFullYear();
+
 const themeToggle_btn = document.getElementById("themeToggle");
 let isRedAlert = false;
 
