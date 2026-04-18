@@ -110,7 +110,7 @@ function abortCountdown() {
 
 function resetCountdown() {
      clearInterval(countdownInterval);
-     timeRemaining = 2 * 60 * 1000;
+     timeRemaining = 1 * 60 * 1000;
 
      DashboardContainer.countdownDisplay.innerHTML = formatTime(timeRemaining);
      DashboardContainer.countdownDisplay.style.color = "var(--toggle-text)";
