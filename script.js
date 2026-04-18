@@ -3,7 +3,7 @@ const html = document.documentElement;
 
 const ValidationForm = {
      validForm: document.getElementById("validForm"),
-     form:document.getElementById("form"),
+     form: document.getElementById("form"),
      missionName: document.getElementById("missionName"),
      commanderName: document.getElementById("commanderName"),
      status: document.getElementById("status")
@@ -19,51 +19,51 @@ const DashboardContainer = {
 }
 
 
-setInterval(()=>{
+setInterval(() => {
      let cTime = new Date();
      let timeOptions = { hour12: true };
      DashboardContainer.currentTime.innerHTML = cTime.toLocaleTimeString('en-US', timeOptions);
-},1000)
+}, 1000)
 
 
 //functions
-function dashboard(){
+function dashboard() {
      ValidationForm.validForm.classList.add("hide")
      DashboardContainer.dashboardContainer.classList.add("show")
 }
 
-function getInputs(){
+function getInputs() {
      return {
           missionName: ValidationForm.missionName.value.trim(),
           commanderName: ValidationForm.commanderName.value.trim()
      }
 }
 
-function logInStatus(){
+function logInStatus() {
      ValidationForm.status.innerHTML = '<p style="color: gray;">Verifying...</p>';
-        
-     setTimeout(()=>{
+
+     setTimeout(() => {
           ValidationForm.status.innerHTML = '<p style="color: green;"><i class="fas fa-check-circle"> </i> Verify Complete </i></p>';
-          
-          setTimeout(()=>{
+
+          setTimeout(() => {
                ValidationForm.status.innerHTML = '<p style="color: gray;">Redirecting</p>';
-               
+
                setTimeout(() => {
-                    dashboard(); 
+                    dashboard();
                }, 500);
 
-          }, 2000)       
+          }, 2000)
      }, 1000)
 }
 
-let countdownInterval; 
-let timeRemaining = 1 * 60 * 1000; 
+let countdownInterval;
+let timeRemaining = 1 * 60 * 1000;
 let lastTimestamp = 0;
 
 function formatTime(timeVal) {
      let minutes = Math.floor(timeVal / 60000);
      let seconds = Math.floor((timeVal % 60000) / 1000);
-     let milliseconds = Math.floor((timeVal % 1000) / 10); 
+     let milliseconds = Math.floor((timeVal % 1000) / 10);
 
      let formattedMinutes = String(minutes).padStart(2, '0');
      let formattedSeconds = String(seconds).padStart(2, '0');
@@ -75,19 +75,19 @@ function formatTime(timeVal) {
 DashboardContainer.countdownDisplay.innerHTML = formatTime(timeRemaining);
 
 function startCountdown() {
-     clearInterval(countdownInterval); 
+     clearInterval(countdownInterval);
      lastTimestamp = Date.now();
-     
+
      countdownInterval = setInterval(() => {
           let now = Date.now();
           timeRemaining -= (now - lastTimestamp);
           lastTimestamp = now;
-          
+
           let displayTime = timeRemaining;
 
           if (displayTime <= 0) {
                displayTime = 0;
-               clearInterval(countdownInterval); 
+               clearInterval(countdownInterval);
                DashboardContainer.countdownDisplay.innerHTML = "LIFTOFF!";
                DashboardContainer.countdownDisplay.style.color = "green";
                return;
@@ -95,7 +95,7 @@ function startCountdown() {
 
           DashboardContainer.countdownDisplay.innerHTML = formatTime(displayTime);
 
-     }, 10); 
+     }, 10);
 }
 
 function abortCountdown() {
@@ -105,33 +105,33 @@ function abortCountdown() {
 }
 
 function resetCountdown() {
-     clearInterval(countdownInterval); 
+     clearInterval(countdownInterval);
      timeRemaining = 2 * 60 * 1000;
-     
-     DashboardContainer.countdownDisplay.innerHTML = formatTime(timeRemaining); 
-     DashboardContainer.countdownDisplay.style.color = "var(--toggle-text)"; 
+
+     DashboardContainer.countdownDisplay.innerHTML = formatTime(timeRemaining);
+     DashboardContainer.countdownDisplay.style.color = "var(--toggle-text)";
 }
 
-ValidationForm.form.addEventListener("submit", (e)=>{
+ValidationForm.form.addEventListener("submit", (e) => {
      e.preventDefault()
-     const {missionName, commanderName} = getInputs();   
-     if (missionName === "" || commanderName === ""){
+     const { missionName, commanderName } = getInputs();
+     if (missionName === "" || commanderName === "") {
           ValidationForm.status.innerHTML = '<p style="color: red;">Input Required</p>';
-     } else{
-          let logIn = logInStatus(); 
+     } else {
+          let logIn = logInStatus();
           clearTimeout(logIn)
      }
 
      DashboardContainer.commName.innerHTML = commanderName
 })
 
-if (html.dataset.theme === "light"){
+if (html.dataset.theme === "light") {
      themeToggle_btn.innerHTML = '<i class="fa-solid fa-moon">'
 }
 
-themeToggle_btn.addEventListener('click', ()=>{
+themeToggle_btn.addEventListener('click', () => {
      html.dataset.theme = html.dataset.theme === "dark" ? "light" : "dark";
-     if (html.dataset.theme === "light"){
+     if (html.dataset.theme === "light") {
           themeToggle_btn.innerHTML = '<i class="fa-solid fa-moon">'
      } else {
           themeToggle_btn.innerHTML = '<i class="fa-solid fa-sun">'
