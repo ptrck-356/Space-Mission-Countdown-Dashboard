@@ -27,7 +27,6 @@ setInterval(()=>{
 //functions
 function dashboard(){
      ValidationForm.validForm.classList.add("hide")
-
      DashboardContainer.dashboardContainer.classList.add("show")
 }
 
@@ -41,54 +40,73 @@ function getInputs(){
 function logInStatus(){
      ValidationForm.status.innerHTML = '<p style="color: gray;">Verifying...</p>';
         
+     setTimeout(()=>{
+          ValidationForm.status.innerHTML = '<p style="color: green;"><i class="fas fa-check-circle"> </i> Verify Complete </i></p>';
+          
           setTimeout(()=>{
-               ValidationForm.status.innerHTML = '<p style="color: green;"><i class="fas fa-check-circle"> </i> Verify Complete </i></p>';
-               setTimeout(()=>{
-                    ValidationForm.status.innerHTML = '<p style="color: gray;">Redirecting</p>';
-               }, 2000)       
-          }, 1000)
+               ValidationForm.status.innerHTML = '<p style="color: gray;">Redirecting</p>';
+               
+               setTimeout(() => {
+                    dashboard(); 
+               }, 500);
+
+          }, 2000)       
+     }, 1000)
 }
 
 let countdownInterval; 
-let timeRemaining = 1*60; 
+let timeRemaining = 1 * 60 * 1000; 
+let lastTimestamp = 0;
+
+function formatTime(timeVal) {
+     let minutes = Math.floor(timeVal / 60000);
+     let seconds = Math.floor((timeVal % 60000) / 1000);
+     let milliseconds = Math.floor((timeVal % 1000) / 10); 
+
+     let formattedMinutes = String(minutes).padStart(2, '0');
+     let formattedSeconds = String(seconds).padStart(2, '0');
+     let formattedMilliseconds = String(milliseconds).padStart(2, '0');
+
+     return `${formattedMinutes}:${formattedSeconds}:${formattedMilliseconds}`;
+}
+
+DashboardContainer.countdownDisplay.innerHTML = formatTime(timeRemaining);
 
 function startCountdown() {
      clearInterval(countdownInterval); 
-     countdownInterval = setInterval(() => {
-          timeRemaining--; 
-          
-
-          let hours = Math.floor(timeRemaining / 3600);
-          let minutes = Math.floor((timeRemaining % 3600) / 60);
-          let seconds = timeRemaining % 60;
-
-          let formattedHours = String(hours).padStart(2, '0');
-          let formattedMinutes = String(minutes).padStart(2, '0');
-          let formattedSeconds = String(seconds).padStart(2, '0');
-
+     lastTimestamp = Date.now();
      
-          DashboardContainer.countdownDisplay.innerHTML = `${formattedHours}:${formattedMinutes}:${formattedSeconds}`;
+     countdownInterval = setInterval(() => {
+          let now = Date.now();
+          timeRemaining -= (now - lastTimestamp);
+          lastTimestamp = now;
+          
+          let displayTime = timeRemaining;
 
-          if (timeRemaining <= 0) {
+          if (displayTime <= 0) {
+               displayTime = 0;
                clearInterval(countdownInterval); 
                DashboardContainer.countdownDisplay.innerHTML = "LIFTOFF!";
                DashboardContainer.countdownDisplay.style.color = "green";
+               return;
           }
-     }, 1000);
+
+          DashboardContainer.countdownDisplay.innerHTML = formatTime(displayTime);
+
+     }, 10); 
 }
 
 function abortCountdown() {
-     clearInterval(countdownInterval); // Stops the timer
+     clearInterval(countdownInterval);
      DashboardContainer.countdownDisplay.innerHTML = "MISSION ABORTED";
      DashboardContainer.countdownDisplay.style.color = "red";
 }
 
 function resetCountdown() {
      clearInterval(countdownInterval); 
-     timeRemaining = 2 * 60;
+     timeRemaining = 2 * 60 * 1000;
      
-     // Resets the display text and color
-     DashboardContainer.countdownDisplay.innerHTML = "00:01:00"; 
+     DashboardContainer.countdownDisplay.innerHTML = formatTime(timeRemaining); 
      DashboardContainer.countdownDisplay.style.color = "black"; 
 }
 
@@ -99,10 +117,13 @@ ValidationForm.form.addEventListener("submit", (e)=>{
      if (missionName === "" || commanderName === ""){
           ValidationForm.status.innerHTML = '<p style="color: red;">Input Required</p>';
      } else{
-          logInStatus(); 
-          dashboard();
+          let logIn = logInStatus(); 
+          clearTimeout(logIn)
      }
+
+     DashboardContainer.commName.innerHTML = commanderName
 })
+
 
 DashboardContainer.buttons[0].addEventListener('click', startCountdown);
 DashboardContainer.buttons[1].addEventListener('click', abortCountdown);

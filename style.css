@@ -1,8 +1,27 @@
+@import url('https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&display=swap');
+
+:root {
+     --shadow-color: rgba(17, 17, 26, 0.1);
+     --border-color: #8b8b8b;
+     --btn-bg: black;
+     --btn-text: aliceblue;
+     --btn-hover-bg: rgb(43, 43, 43);
+     --bg-secondary: #e9e9e9;
+     --toggle-border: #696969;
+     --toggle-text: rgb(32, 31, 31);
+     --toggle-hover-bg: #d1cfcf;
+     --clock-border: hsla(0, 1%, 61%, 0.664);
+     --btn-primary-text: white;
+     --btn-primary-bg: #007bff;
+     --btn-primary-hover-bg: #0056b3;
+}
+
 *{
      padding: 0;
      margin: 0;
      box-sizing: border-box;
-     font-family: sans-serif;
+     font-family: 'DM Sans';
+     
 }
 
 body{
@@ -11,6 +30,7 @@ body{
      display: flex;
      align-items: center;
      justify-content: center;
+     letter-spacing: 4%;
 }
 
 section{
@@ -19,12 +39,12 @@ section{
      height: auto;
      min-height: 300px;
      padding: 32px;
-     box-shadow: rgba(17, 17, 26, 0.1) 0px 4px 16px, rgba(17, 17, 26, 0.1) 0px 8px 24px, rgba(17, 17, 26, 0.1) 0px 16px 56px;
+     box-shadow: var(--shadow-color) 0px 4px 16px, var(--shadow-color) 0px 8px 24px, var(--shadow-color) 0px 16px 56px;
      border-radius: 16px;
 }
 
 .validForm{
-     display: none;
+     display: block;
 }
 
 .validForm.hide{
@@ -54,7 +74,7 @@ input{
 
 input[type="text"]{
      padding: 12px 16px;
-     border: 1px solid #8b8b8b;
+     border: 1px solid var(--border-color);
      border-radius: 12px;
 }
 
@@ -68,8 +88,8 @@ span{
 
 button{
      all: unset;
-     background-color: black;
-     color: aliceblue;
+     background-color: var(--btn-primary-bg);
+     color: var(--btn-primary-text);
      font-weight: 700;
      padding: 10px 16px;
      text-align: center;
@@ -78,11 +98,12 @@ button{
 }
 
 button:hover{
-     background-color: rgb(43, 43, 43);
+     background-color: var(--btn-primary-hover-bg
+     );
 }
 
 .mainDashboard{
-     display:block;
+     display:none;
 }
 
 .mainDashboard.show{
@@ -102,15 +123,15 @@ h1{
 
 .themeToggle{
      all: unset;
-     background-color: #e9e9e9;
+     background-color: var(--bg-secondary);
      border-radius: 50%;
-     border: #696969;
+     border: var(--toggle-border);
      min-width: 40px;
      min-height: 40px;
      display: flex;
      align-items: center;
      justify-content: center;
-     color: rgb(32, 31, 31);
+     color: var(--toggle-text);
 }
 
 i{
@@ -118,7 +139,7 @@ i{
 }
 
 .head button:hover {
-     background-color: #d1cfcf;
+     background-color: var(--toggle-hover-bg);
      transform: translateY(-2px);
 }
 
@@ -128,10 +149,10 @@ i{
      display: flex;
      align-items: center;
      justify-content: center;
-     border: hsla(0, 1%, 61%, 0.664) solid 1px;
+     border: var(--clock-border) solid 1px;
      border-radius: 12px;
      margin: 8px 0;
-     background-color: #e9e9e9;
+     background-color: var(--bg-secondary);
 }
 
 .liveClock span, .countdown span{
@@ -154,8 +175,8 @@ i{
      font-weight: bold;
      border: none;
      border-radius: 5px;
-     color: white;
-     background-color: #007bff;
+     color: var(--btn-primary-text);
+     background-color: var(--btn-primary-bg);
      cursor: pointer;
      transition: all 0.3s ease;
      display: flex;
@@ -164,6 +185,6 @@ i{
  }
  
  .btnContainer button:hover {
-     background-color: #0056b3;
+     background-color: var(--btn-primary-hover-bg);
      transform: translateY(-2px);
  }
