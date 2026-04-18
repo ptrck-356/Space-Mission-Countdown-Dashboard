@@ -1,5 +1,6 @@
 const themeToggle_btn = document.getElementById("themeToggle");
-const html = document.documentElement;
+let isRedAlert = false;
+
 
 const ValidationForm = {
      validForm: document.getElementById("validForm"),
@@ -30,6 +31,7 @@ setInterval(() => {
 function dashboard() {
      ValidationForm.validForm.classList.add("hide")
      DashboardContainer.dashboardContainer.classList.add("show")
+     themeToggle_btn.style.display = "flex";
 }
 
 function getInputs() {
@@ -118,25 +120,24 @@ ValidationForm.form.addEventListener("submit", (e) => {
      if (missionName === "" || commanderName === "") {
           ValidationForm.status.innerHTML = '<p style="color: red;">Input Required</p>';
      } else {
-          let logIn = logInStatus();
-          clearTimeout(logIn)
+          logInStatus();
      }
 
      DashboardContainer.commName.innerHTML = commanderName
 })
 
-if (html.dataset.theme === "light") {
-     themeToggle_btn.innerHTML = '<i class="fa-solid fa-moon">'
-}
 
 themeToggle_btn.addEventListener('click', () => {
-     html.dataset.theme = html.dataset.theme === "dark" ? "light" : "dark";
-     if (html.dataset.theme === "light") {
-          themeToggle_btn.innerHTML = '<i class="fa-solid fa-moon">'
+     isRedAlert = !isRedAlert;
+     document.body.classList.toggle('red-alert', isRedAlert);
+
+     if (isRedAlert) {
+          themeToggle_btn.innerHTML = '<i class="fa-solid fa-circle-radiation"></i> Cancel Alert';
      } else {
-          themeToggle_btn.innerHTML = '<i class="fa-solid fa-sun">'
+          themeToggle_btn.innerHTML = '<i class="fa-solid fa-circle-radiation"></i> Engage Red Alert';
      }
 })
+
 
 DashboardContainer.buttons[0].addEventListener('click', startCountdown);
 DashboardContainer.buttons[1].addEventListener('click', abortCountdown);

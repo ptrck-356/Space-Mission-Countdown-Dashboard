@@ -37,6 +37,23 @@
      --clock-border: #3a3f4b;
 }
 
+/* ===== RED ALERT STATE ===== */
+body.red-alert {
+     --bg-main: #1a0000;
+     --bg-secondary: #2d0000;
+     --border-color: #7f1010;
+     --shadow-color: rgba(200, 0, 0, 0.3);
+
+     --btn-primary-bg: #cc0000;
+     --btn-primary-text: #ffffff;
+     --btn-primary-hover-bg: #990000;
+
+     --toggle-border: #ff4444;
+     --toggle-text: #ff9999;
+     --toggle-hover-bg: #3d0000;
+     --clock-border: #7f1010;
+}
+
 /* ===== RESET ===== */
 *{
      padding: 0;
@@ -169,19 +186,22 @@ h1{
 /* ===== THEME TOGGLE ===== */
 .themeToggle{
      all: unset;
+     display: none;
      background-color: var(--bg-secondary);
-     border-radius: 50%;
+     border-radius: 999px;
      border: var(--toggle-border) 1px solid;
-     min-width: 40px;
+     padding: 8px 16px;
      min-height: 40px;
-     display: flex;
      align-items: center;
-     justify-content: center;
+     gap: 8px;
+     white-space: nowrap;
      color: var(--toggle-text);
      position: fixed;
      bottom: 20px;
      right: 20px;
      cursor: pointer;
+     font-weight: 600;
+     font-size: 0.85rem;
 }
 
 /* ===== ICON ===== */
