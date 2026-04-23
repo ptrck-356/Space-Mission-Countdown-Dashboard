@@ -1,9 +1,10 @@
+// Show the current year in the footer
 document.getElementById("footerYear").textContent = new Date().getFullYear();
 
 const themeToggle_btn = document.getElementById("themeToggle");
 let isRedAlert = false;
 
-
+// Elements from the registration form
 const ValidationForm = {
      validForm: document.getElementById("validForm"),
      form: document.getElementById("form"),
@@ -12,6 +13,7 @@ const ValidationForm = {
      status: document.getElementById("status")
 }
 
+// Elements from the mission dashboard
 const DashboardContainer = {
      dashboardContainer: document.getElementById("mainDashboard"),
      commName: document.getElementById("name"),
@@ -21,7 +23,7 @@ const DashboardContainer = {
      countdownDisplay: document.getElementById("countdownDisplay")
 }
 
-
+// Refresh the clock display every second
 setInterval(() => {
      let cTime = new Date();
      let timeOptions = { hour12: true };
@@ -29,13 +31,14 @@ setInterval(() => {
 }, 1000)
 
 
-//functions
+// Switch from the form view to the dashboard view
 function dashboard() {
      ValidationForm.validForm.classList.add("hide")
      DashboardContainer.dashboardContainer.classList.add("show")
      themeToggle_btn.style.display = "flex";
 }
 
+// Get the typed values from the form fields
 function getInputs() {
      return {
           missionName: ValidationForm.missionName.value.trim(),
@@ -43,6 +46,7 @@ function getInputs() {
      }
 }
 
+// Show a fake verification process, then go to the dashboard
 function logInStatus() {
      ValidationForm.status.innerHTML = '<p style="color: gray;">Verifying...</p>';
 
@@ -61,9 +65,10 @@ function logInStatus() {
 }
 
 let countdownInterval;
-let timeRemaining = 1 * 60 * 1000;
+let timeRemaining = 1 * 60 * 1000; // 1 minute in milliseconds
 let lastTimestamp = 0;
 
+// Turn milliseconds into a MM:SS:ms string for display
 function formatTime(timeVal) {
      let minutes = Math.floor(timeVal / 60000);
      let seconds = Math.floor((timeVal % 60000) / 1000);
@@ -76,8 +81,10 @@ function formatTime(timeVal) {
      return `${formattedMinutes}:${formattedSeconds}:${formattedMilliseconds}`;
 }
 
+// Show the starting time on page load
 DashboardContainer.countdownDisplay.innerHTML = formatTime(timeRemaining);
 
+// Start (or restart) the countdown timer
 function startCountdown() {
      clearInterval(countdownInterval);
      lastTimestamp = Date.now();
@@ -102,12 +109,14 @@ function startCountdown() {
      }, 10);
 }
 
+// Stop the countdown and show an abort message
 function abortCountdown() {
      clearInterval(countdownInterval);
      DashboardContainer.countdownDisplay.innerHTML = "MISSION ABORTED";
      DashboardContainer.countdownDisplay.style.color = "red";
 }
 
+// Stop the countdown and reset the time back to 1 minute
 function resetCountdown() {
      clearInterval(countdownInterval);
      timeRemaining = 1 * 60 * 1000;
@@ -116,6 +125,7 @@ function resetCountdown() {
      DashboardContainer.countdownDisplay.style.color = "var(--toggle-text)";
 }
 
+// When the form is submitted, check that both fields are filled in
 ValidationForm.form.addEventListener("submit", (e) => {
      e.preventDefault()
      const { missionName, commanderName } = getInputs();
@@ -128,7 +138,7 @@ ValidationForm.form.addEventListener("submit", (e) => {
      DashboardContainer.commName.innerHTML = commanderName
 })
 
-
+// Switch the red alert theme on or off and update the button text
 themeToggle_btn.addEventListener('click', () => {
      isRedAlert = !isRedAlert;
      document.body.classList.toggle('red-alert', isRedAlert);
@@ -140,7 +150,7 @@ themeToggle_btn.addEventListener('click', () => {
      }
 })
 
-
+// Connect the three buttons to their functions
 DashboardContainer.buttons[0].addEventListener('click', startCountdown);
 DashboardContainer.buttons[1].addEventListener('click', abortCountdown);
 DashboardContainer.buttons[2].addEventListener('click', resetCountdown);

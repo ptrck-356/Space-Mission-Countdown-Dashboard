@@ -21,22 +21,6 @@
      --clock-border: hsla(0, 1%, 61%, 0.664);
 }
 
-[data-theme="dark"] {
-     --bg-main: #0f1115;
-     --bg-secondary: #1a1d23;
-     --border-color: #2f3542;
-     --shadow-color: rgba(0, 0, 0, 0.5);
-
-     --btn-primary-bg: #3b82f6;
-     --btn-primary-text: #ffffff;
-     --btn-primary-hover-bg: #2563eb;
-
-     --toggle-border: #3a3f4b;
-     --toggle-text: #f5f5f5;
-     --toggle-hover-bg: #2a2f3a;
-     --clock-border: #3a3f4b;
-}
-
 /* ===== RED ALERT STATE ===== */
 body.red-alert {
      --bg-main: #1a0000;
