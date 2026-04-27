@@ -8,8 +8,12 @@ let isRedAlert = false;
 const ValidationForm = {
      validForm: document.getElementById("validForm"),
      form: document.getElementById("form"),
-     missionName: document.getElementById("missionName"),
-     commanderName: document.getElementById("commanderName"),
+     getInput: ()=>{
+          return {
+               missionName: document.getElementById("missionName").value.trim(),
+               commanderName: document.getElementById("commanderName").value.trim()
+          }
+     },
      status: document.getElementById("status")
 }
 
@@ -36,14 +40,6 @@ function dashboard() {
      ValidationForm.validForm.classList.add("hide")
      DashboardContainer.dashboardContainer.classList.add("show")
      themeToggle_btn.style.display = "flex";
-}
-
-// Get the typed values from the form fields
-function getInputs() {
-     return {
-          missionName: ValidationForm.missionName.value.trim(),
-          commanderName: ValidationForm.commanderName.value.trim()
-     }
 }
 
 // Show a fake verification process, then go to the dashboard
@@ -128,7 +124,7 @@ function resetCountdown() {
 // When the form is submitted, check that both fields are filled in
 ValidationForm.form.addEventListener("submit", (e) => {
      e.preventDefault()
-     const { missionName, commanderName } = getInputs();
+     const { missionName, commanderName } = ValidationForm.getInput();
      if (missionName === "" || commanderName === "") {
           ValidationForm.status.innerHTML = '<p style="color: red;">Input Required</p>';
      } else {
